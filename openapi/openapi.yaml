@@ -17,8 +17,19 @@ tags:
       - Разместить спецификацию в отдельном репозитории Github
       - Опубликовать спецификацию на Github Pages используя ветку gh-pages
 security:
-  - SecretApiKey: []
-  - JWT: []
+  - OAuth2: []
 paths:
   /resumes/mine:
     $ref: ./paths/resumes/mine.yaml
+components:
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: https://example.com/oauth/authorize
+          tokenUrl: https://example.com/oauth/token
+          scopes:
+            read: Grants read access
+            write: Grants write access
+            admin: Grants access to admin operations

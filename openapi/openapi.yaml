@@ -6,7 +6,7 @@ info:
     name: Artem
     email: tempmail@mail.ru
 servers:
-  - url: 'https://www.hh.ru/'
+  - url: 'https://www.api.hh.ru/'
     description: Prod Server
 tags:
   - name: Лабораторная работа №3
@@ -23,6 +23,8 @@ paths:
     $ref: ./paths/resumes/mine.yaml
   /resumes/{resume_id}:
     $ref: ./paths/resumes/@{resume_id}.yaml
+  /vacancies:
+    $ref: ./paths/vacancies/vacancies.yaml
 components:
   securitySchemes:
     OAuth2:

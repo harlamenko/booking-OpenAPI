@@ -1,0 +1,112 @@
+type: object
+properties:
+  access:
+    type: object
+    description: видимость резюме
+    properties:
+      type:
+        type: object
+        properties:
+          id:
+            type: string
+            example: clients
+          name:
+            type: string
+            example: видно всем компаниям, зарегистрированным на HeadHunter
+  blocked:
+    type: boolean
+    example: false
+  finished: 
+    type: boolean
+    example: false
+  total_views:
+    type: integer
+    example: 0
+  new_views:
+    type: integer
+    example: 0
+  status:
+    type: object
+    properties:
+      id:
+        type: string
+        example: published
+      name:
+        type: string
+        example: опубликовано
+  views_url:
+    type: string
+    example: https://api.hh.ru/resumes/0123456789abcdef/views
+  id:
+    type: string
+    example: 0123456789abcdef
+    description: Идентификатор резюме.
+  title:
+    type: string
+    example: Начинающий специалист
+    description: Желаемая должность.
+  url:
+    type: string
+    example: https://api.hh.ru/resumes/0123456789abcdef
+  first_name:
+    type: string
+    example: Иван
+    description: Имя.
+  last_name:
+    type: string
+    example: Иванов
+    description: Фамилия.
+  middle_name:
+    type: string
+    example: Иванович
+    description: Отчество.
+  age:
+    type: integer
+    example: 19
+    description: Возраст.
+  alternate_url:
+    type: string
+    description: URL резюме на сайте.
+    example: https://hh.ru/resume/0123456789abcdef
+  created_at:
+    type: string
+    description: Дата и время создания резюме.
+    example: '2015-02-06T12:00:00+0300'
+  updated_at:
+    type: string
+    description: Дата и время обновления резюме.
+    example: '2015-04-20T16:24:15+0300'
+  area:
+    type: object
+    description: Город проживания. Элемент справочника areas.
+    properties:
+      id: 
+        type: string
+        example: '1'
+      name:
+        type: string
+        example: Москва
+      url:
+        type: string
+        example: https://api.hh.ru/areas/1
+  certificate:
+    description: Список сертификатов соискателя.
+    type: array
+    items:
+        type: object
+        properties:
+          achieved_at:
+            type: string
+            example: '2015-01-01'
+          owner:
+            type: object
+            properties: 
+              title:
+                type: string
+                example: тест
+              type:
+                type: string
+                example: custom
+              url:
+                type: string
+                example: http://example.com/

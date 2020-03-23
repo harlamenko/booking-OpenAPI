@@ -1,0 +1,6 @@
+description: Пользователь не авторизован
+content:
+  application/json:
+    schema:
+      type: string
+      example: Forbidden

@@ -11,10 +11,6 @@ get:
           schema:
             $ref: ../../components/schemas/resumes/mine.yaml
     '403':
-      description: если пользователь не авторизован
-      content:
-        application/json:
-          schema:
-            type: string
-            example: Forbidden
+      $ref: ../../components/responses/403.yaml
+
               

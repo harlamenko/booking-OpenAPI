@@ -1,0 +1,24 @@
+openapi: 3.0.0
+info:
+  version: '1.0'
+  title: hh.ru REST API
+  contact:
+    name: Artem
+    email: tempmail@mail.ru
+servers:
+  - url: 'https://www.hh.ru/'
+    description: Prod Server
+tags:
+  - name: Лабораторная работа №3
+    description: |
+      # Задание
+      - Создать новый проект с @redocly/openapi-cli
+      - Описать API предметной области по варианту в формате OpenAPI 3.0
+      - Разместить спецификацию в отдельном репозитории Github
+      - Опубликовать спецификацию на Github Pages используя ветку gh-pages
+security:
+  - SecretApiKey: []
+  - JWT: []
+paths:
+  /resumes/mine:
+    $ref: ./paths/resumes/mine.yaml

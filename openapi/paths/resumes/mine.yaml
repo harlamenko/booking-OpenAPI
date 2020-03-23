@@ -1,0 +1,20 @@
+get:
+  tags:
+    - Резюме
+  summary: Список резюме авторизованного пользователя
+  description: возвращает список резюме в сокращенном представлении для авторизованного пользователя. Без авторизации вернёт 403 Forbidden
+  responses:
+    '200':
+      description: Мои резюме успешно получены
+      content:
+        application/json:
+          schema:
+            $ref: ../../components/schemas/resumes/mine.yaml
+    '403':
+      description: Forbidden
+      content:
+        text/plain:
+          schema:
+            type: string
+            example: pong
+              

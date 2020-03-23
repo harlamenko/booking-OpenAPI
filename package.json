@@ -1,7 +1,11 @@
 {
   "name": "openapi-l2",
   "version": "1.0.0",
-  "scripts": {},
+  "scripts": {
+    "start": "openapi preview-docs",
+    "build": "openapi bundle -o dist",
+    "test": "openapi validate"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/harlamenko/OpenAPI-l2.git"

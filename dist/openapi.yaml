@@ -1,0 +1,589 @@
+openapi: 3.0.0
+info:
+  version: '1.0'
+  title: hh.ru REST API
+  contact:
+    name: Artem
+    email: tempmail@mail.ru
+servers:
+  - url: 'https://www.api.hh.ru/'
+    description: Prod Server
+tags:
+  - name: Лабораторная работа №3
+    description: |
+      # Задание
+      - Создать новый проект с @redocly/openapi-cli
+      - Описать API предметной области по варианту в формате OpenAPI 3.0
+      - Разместить спецификацию в отдельном репозитории Github
+      - Опубликовать спецификацию на Github Pages используя ветку gh-pages
+security:
+  - OAuth2: []
+paths:
+  /resumes/mine:
+    get:
+      tags:
+        - Резюме
+      summary: Список резюме авторизованного пользователя
+      description: >-
+        возвращает список резюме в сокращенном представлении для авторизованного
+        пользователя. Без авторизации вернёт 403 Forbidden
+      responses:
+        '200':
+          description: Мои резюме успешно получены
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/mine'
+        '403':
+          $ref: '#/components/responses/403'
+  '/resumes/{resume_id}':
+    get:
+      tags:
+        - Резюме
+      summary: Просмотр резюме
+      description: >
+        Для авторизованного автора возвращается более детальная информация,
+        включая тип видимости, комментарии модераторов и статус.
+
+        Для работодателя, если просмотр полных данных по резюме недоступен при
+        текущей авторизации, в некоторых полях будет null, а поле
+        can_view_full_info будет иметь значение false.
+
+        После вызова этого урла, если у работодателя есть отклик/приглашение на
+        это резюме, отклик будет считаться просмотренным.
+      responses:
+        '200':
+          description: Резюме получено
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/@{resume_id}'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+  /vacancies:
+    get:
+      tags:
+        - Вакансии
+      summary: Поиск по вакансиям
+      description: вернёт результаты поиска вакансий.
+      parameters:
+        - in: query
+          name: text
+          schema:
+            type: string
+          description: текстовое поле.
+        - in: query
+          name: search_field
+          schema:
+            type: string
+          description: область поиска.
+        - in: query
+          name: experience
+          schema:
+            type: string
+          description: опыт работы.
+        - in: query
+          name: employment
+          schema:
+            type: string
+          description: тип занятости.
+        - in: query
+          name: schedule
+          schema:
+            type: string
+          description: график работы.
+        - in: query
+          name: area
+          schema:
+            type: string
+          description: регион.
+        - in: query
+          name: metro
+          schema:
+            type: string
+          description: ветка или станция метро.
+        - in: query
+          name: specialization
+          schema:
+            type: string
+          description: профобласть или специализация.
+        - in: query
+          name: employer_id
+          schema:
+            type: string
+          description: идентификатор компании.
+        - in: query
+          name: currency
+          schema:
+            type: string
+          description: код валюты.
+        - in: query
+          name: salary
+          schema:
+            type: string
+          description: размер заработной платы.
+        - in: query
+          name: label
+          schema:
+            type: string
+          description: фильтр по меткам вакансий.
+        - in: query
+          name: only_with_salary
+          schema:
+            type: string
+          description: показывать вакансии только с указанием зарплаты.
+        - in: query
+          name: period
+          schema:
+            type: string
+          description: 'количество дней, в пределах которых нужно найти вакансии.'
+        - in: query
+          name: top_lat
+          schema:
+            type: string
+          description: значение гео-координат.
+        - in: query
+          name: Принимаемое значение
+          schema:
+            type: string
+          description: градусы в виде десятичной дроби.
+        - in: query
+          name: order_by
+          schema:
+            type: string
+          description: сортировка списка вакансий.
+        - in: query
+          name: date_from
+          schema:
+            type: string
+          description: 'дата, которая ограничивает снизу диапазон дат публикации вакансий.'
+        - in: query
+          name: date_to
+          schema:
+            type: string
+          description: 'дата, которая ограничивает сверху диапазон дат публикации вакансий.'
+        - in: query
+          name: clusters
+          schema:
+            type: string
+          description: 'возвращать ли кластеры для данного поиска, по умолчанию'
+        - in: query
+          name: describe_arguments
+          schema:
+            type: string
+          description: >-
+            возвращать ли описание использованных параметров поиска, по
+            умолчанию
+        - in: query
+          name: per_page
+          schema:
+            type: string
+          description: параметры пагинации. Параметр per_page ограничен значением в 100.
+      responses:
+        '200':
+          description: Вакансии
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/vacancies'
+        '403':
+          $ref: '#/components/responses/403'
+components:
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: 'https://example.com/oauth/authorize'
+          tokenUrl: 'https://example.com/oauth/token'
+          scopes:
+            read: Grants read access
+            write: Grants write access
+            admin: Grants access to admin operations
+  schemas:
+    Resume: &ref_0
+      type: object
+      properties:
+        access:
+          type: object
+          description: видимость резюме
+          properties:
+            type:
+              type: object
+              properties:
+                id:
+                  type: string
+                  example: clients
+                name:
+                  type: string
+                  example: 'видно всем компаниям, зарегистрированным на HeadHunter'
+        blocked:
+          type: boolean
+          example: false
+        finished:
+          type: boolean
+          example: false
+        total_views:
+          type: integer
+          example: 0
+        new_views:
+          type: integer
+          example: 0
+        status:
+          type: object
+          properties:
+            id:
+              type: string
+              example: published
+            name:
+              type: string
+              example: опубликовано
+        views_url:
+          type: string
+          example: 'https://api.hh.ru/resumes/0123456789abcdef/views'
+        id:
+          type: string
+          example: 0123456789abcdef
+          description: Идентификатор резюме.
+        title:
+          type: string
+          example: Начинающий специалист
+          description: Желаемая должность.
+        url:
+          type: string
+          example: 'https://api.hh.ru/resumes/0123456789abcdef'
+        first_name:
+          type: string
+          example: Иван
+          description: Имя.
+        last_name:
+          type: string
+          example: Иванов
+          description: Фамилия.
+        middle_name:
+          type: string
+          example: Иванович
+          description: Отчество.
+        age:
+          type: integer
+          example: 19
+          description: Возраст.
+        alternate_url:
+          type: string
+          description: URL резюме на сайте.
+          example: 'https://hh.ru/resume/0123456789abcdef'
+        created_at:
+          type: string
+          description: Дата и время создания резюме.
+          example: '2015-02-06T12:00:00+0300'
+        updated_at:
+          type: string
+          description: Дата и время обновления резюме.
+          example: '2015-04-20T16:24:15+0300'
+        area:
+          type: object
+          description: Город проживания. Элемент справочника areas.
+          properties:
+            id:
+              type: string
+              example: '1'
+            name:
+              type: string
+              example: Москва
+            url:
+              type: string
+              example: 'https://api.hh.ru/areas/1'
+        certificate:
+          description: Список сертификатов соискателя.
+          type: array
+          items:
+            type: object
+            properties:
+              achieved_at:
+                type: string
+                example: '2015-01-01'
+              owner:
+                type: object
+                properties:
+                  title:
+                    type: string
+                    example: тест
+                  type:
+                    type: string
+                    example: custom
+                  url:
+                    type: string
+                    example: 'http://example.com/'
+    mine:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Resume'
+        page:
+          type: integer
+          example: 0
+        per_page:
+          type: integer
+          example: 1
+        pages:
+          type: integer
+          example: 1
+        found:
+          type: integer
+          example: 1
+    '@{resume_id}': *ref_0
+    vacancies:
+      type: object
+      properties:
+        per_page:
+          type: integer
+          example: 1
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              salary:
+                type: object
+                properties:
+                  to:
+                    type: integer
+                    example: null
+                  from:
+                    type: integer
+                    example: 30000
+                  currency:
+                    type: string
+                    example: RUR
+                  gross:
+                    type: boolean
+                    example: true
+              name:
+                type: string
+                example: Секретарь
+              insider_interview:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: '12345'
+                  url:
+                    type: string
+                    example: 'https://hh.ru/interview/12345?employerId=777'
+              area:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: '1'
+                  url:
+                    type: string
+                    example: 'https://api.hh.ru/areas/1'
+                  name:
+                    type: string
+                    example: Москва
+              url:
+                type: string
+                example: 'https://api.hh.ru/vacancies/8331228'
+              published_at:
+                type: string
+                example: '2013-07-08T16:17:21+0400'
+              relations:
+                type: array
+                items: null
+              employer:
+                type: object
+                properties:
+                  logo_urls:
+                    type: object
+                    properties:
+                      '90':
+                        type: string
+                        example: 'https://hh.ru/employer-logo/289027.png'
+                      '240':
+                        type: string
+                        example: 'https://hh.ru/employer-logo/289169.png'
+                      original:
+                        type: string
+                        example: 'https://hh.ru/file/2352807.png'
+                  name:
+                    type: string
+                    example: HeadHunter
+                  url:
+                    type: string
+                    example: 'https://api.hh.ru/employers/1455'
+                  alternate_url:
+                    type: string
+                    example: 'https://hh.ru/employer/1455'
+                  id:
+                    type: string
+                    example: '1455'
+                  trusted:
+                    type: boolean
+                    example: true
+              contacts:
+                type: object
+                properties:
+                  name:
+                    type: string
+                    example: Имя
+                  email:
+                    type: string
+                    example: user@example.com
+                  phones:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        country:
+                          type: string
+                          example: '7'
+                        city:
+                          type: string
+                          example: '985'
+                        number:
+                          type: string
+                          example: 000-00-00
+                        comment:
+                          type: string
+                          example: null
+              response_letter_required:
+                type: boolean
+                example: true
+              address:
+                type: object
+                properties:
+                  city:
+                    type: string
+                    example: Москва
+                  street:
+                    type: string
+                    example: улица Годовикова
+                  building:
+                    type: string
+                    example: 9с10
+                  description:
+                    type: string
+                    example: на проходной потребуется паспорт
+                  lat:
+                    type: integer
+                    example: 55.807794
+                  lng:
+                    type: integer
+                    example: 37.638699
+                  metro_stations:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        station_id:
+                          type: string
+                          example: '6.8'
+                        station_name:
+                          type: string
+                          example: Алексеевская
+                        line_id:
+                          type: string
+                          example: '6'
+                        line_name:
+                          type: string
+                          example: Калужско-Рижская
+                        lat:
+                          type: integer
+                          example: 55.807794
+                        lng:
+                          type: integer
+                          example: 37.638699
+              sort_point_distance:
+                type: integer
+                example: 226.001293
+              alternate_url:
+                type: string
+                example: 'https://hh.ru/vacancy/8331228'
+              apply_alternate_url:
+                type: string
+                example: 'https://hh.ru/applicant/vacancy_response?vacancyId=8331228'
+              department:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: HH-1455-TECH
+                  name:
+                    type: string
+                    example: 'HeadHunter::Технический департамент'
+              type:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: open
+                  name:
+                    type: string
+                    example: Открытая
+              id:
+                type: string
+                example: '8331228'
+              has_test:
+                type: boolean
+                example: true
+              response_url:
+                type: string
+                example: null
+              snippet:
+                type: object
+                properties:
+                  requirement:
+                    type: string
+                    example: >
+                      Высшее образование. Опыт работы в качестве
+
+                      <highlighttext>секретаря</highlighttext>, офис-менеджера.
+                      Знание
+
+                      делопроизводства, документооборота. Коммуникативные
+                      навыки.
+                  responsibility:
+                    type: string
+                    example: >
+                      Документооборот (регистрация, отправка, контроль
+                      исполнения писем,
+
+                      ведение протоколов, отчетность). Распределение
+                      корреспонденции. Прием и
+
+                      распределение телефонных звонков.
+        page:
+          type: integer
+          example: 0
+        pages:
+          type: integer
+          example: 13
+        found:
+          type: integer
+          example: 13
+        clusters:
+          type: integer
+          example: null
+        arguments:
+          type: integer
+          example: null
+  responses:
+    '403':
+      description: Пользователь не авторизован
+      content:
+        application/json:
+          schema:
+            type: string
+            example: Forbidden
+    '404':
+      description: Не существует или недоступно пользователю
+      content:
+        application/json:
+          schema:
+            type: string
+            example: Not Found

@@ -21,6 +21,8 @@ security:
 paths:
   /resumes/mine:
     $ref: ./paths/resumes/mine.yaml
+  /resumes/{resume_id}:
+    $ref: ./paths/resumes/@{resume_id}.yaml
 components:
   securitySchemes:
     OAuth2:

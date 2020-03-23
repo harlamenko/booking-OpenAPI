@@ -1,0 +1,30 @@
+get:
+  tags:
+    - Резюме
+  summary: Просмотр резюме
+  description: |
+    Для авторизованного автора возвращается более детальная информация, включая тип видимости, комментарии модераторов и статус.
+    Для работодателя, если просмотр полных данных по резюме недоступен при текущей авторизации, в некоторых полях будет null, а поле can_view_full_info будет иметь значение false.
+    После вызова этого урла, если у работодателя есть отклик/приглашение на это резюме, отклик будет считаться просмотренным.
+  responses:
+    '200':
+      description: Резюме получено
+      content:
+        application/json:
+          schema:
+            $ref: ../../components/schemas/resumes/@{resume_id}.yaml
+    '404':
+      description: если резюме не существует или недоступно пользователю
+      content:
+        application/json:
+          schema:
+            type: string
+            example: Not Found
+    '403':
+      description: если пользователь не авторизован
+      content:
+        application/json:
+          schema:
+            type: string
+            example: Forbidden
+              

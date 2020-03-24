@@ -8,7 +8,7 @@ post:
     content:
       application/json:
         schema:
-          $ref: ../components/requestBodies/User.yaml
+          $ref: ../components/requestBodies/user.yaml
   responses:
     '200':
       description: Успешная аутентификация

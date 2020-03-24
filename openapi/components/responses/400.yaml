@@ -11,9 +11,10 @@ content:
             properties:
               field:
                 type: string
-                description: The field name. Dot notation is used for nested object field names.
+                description: Имя неправильно заполненного поля
               message:
                 type: string
+                description: Сообщение
           example:
             - field: phone
               message: Телефон указан неверно

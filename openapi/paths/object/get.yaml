@@ -6,7 +6,7 @@ get:
   summary: Получение информации об объекте
   responses:
     '200':
-      description: Объект добавлен успешно
+      description: Информации об объекте получена успешно
       content:
         application/json:
           schema:

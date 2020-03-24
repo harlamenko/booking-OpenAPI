@@ -1,0 +1,21 @@
+post:
+  tags:
+    - Регистрация
+  summary: Регистрация пользователя
+  requestBody:
+    description: Данные пользователя
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: ../components/requestBodies/User.yaml
+  responses:
+    '200':
+      description: Успешная регистрация
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/accessToken.yaml
+    '406':
+      $ref: ../components/responses/406.yaml
+              

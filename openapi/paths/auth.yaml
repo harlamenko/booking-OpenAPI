@@ -1,0 +1,21 @@
+post:
+  tags:
+    - Аутентификация
+  summary: Аутентификация пользователя
+  requestBody:
+    description: Данные пользователя
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: ../components/requestBodies/User.yaml
+  responses:
+    '200':
+      description: Успешная аутентификация
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/accessToken.yaml
+    '404':
+      $ref: ../components/responses/404.yaml
+              

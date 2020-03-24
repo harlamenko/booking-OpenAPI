@@ -1,13 +1,12 @@
 openapi: 3.0.0
 info:
   version: '1.0'
-  title: hh.ru REST API
+  title: booking.com REST API
   contact:
     name: Artem
     email: tempmail@mail.ru
 servers:
-  - url: 'https://www.api.hh.ru/'
-    description: Prod Server
+  - url: 'https://www.api.booking.com/'
 tags:
   - name: Лабораторная работа №3
     description: |
@@ -17,23 +16,20 @@ tags:
       - Разместить спецификацию в отдельном репозитории Github
       - Опубликовать спецификацию на Github Pages используя ветку gh-pages
 security:
-  - OAuth2: []
+  - BearerAuth: []
 paths:
-  /resumes/mine:
-    $ref: ./paths/resumes/mine.yaml
-  /resumes/{resume_id}:
-    $ref: ./paths/resumes/@{resume_id}.yaml
-  /vacancies:
-    $ref: ./paths/vacancies/vacancies.yaml
+  /registration:
+    $ref: ./paths/registration.yaml
+  /auth:
+    $ref: ./paths/auth.yaml
+  # /resumes/mine:
+  #   $ref: ./paths/resumes/mine.yaml
+  # /resumes/{resume_id}:
+  #   $ref: ./paths/resumes/@{resume_id}.yaml
+  # /vacancies:
+  #   $ref: ./paths/vacancies.yaml
 components:
   securitySchemes:
-    OAuth2:
-      type: oauth2
-      flows:
-        authorizationCode:
-          authorizationUrl: https://example.com/oauth/authorize
-          tokenUrl: https://example.com/oauth/token
-          scopes:
-            read: Grants read access
-            write: Grants write access
-            admin: Grants access to admin operations
+    BearerAuth:
+      type: http
+      scheme: bearer

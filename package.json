@@ -8,14 +8,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/harlamenko/OpenAPI-l2.git"
+    "url": "git+https://github.com/harlamenko/OpenAPI-l3.git"
   },
   "author": "Harlamenko Artem",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/harlamenko/OpenAPI-l2/issues"
-  },
-  "homepage": "https://github.com/harlamenko/OpenAPI-l2",
+  "homepage": "https://harlamenko.github.io/OpenAPI-l3",
   "dependencies": {
     "@redocly/openapi-cli": "^0.8.4"
   }

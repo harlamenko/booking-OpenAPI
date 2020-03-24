@@ -1,0 +1,6 @@
+type: object
+properties:
+  accessToken:
+    type: string
+    description: Токен для аутентификации
+    example: a9a09ba678c6dbf0fe55aa1cd7d0260fc9e6590d32a7747ff3d724f529609ae99d542ddea2de1a5d7024cc04acd324c7b19aa5ac73daf8953a1502ae26d0ed96

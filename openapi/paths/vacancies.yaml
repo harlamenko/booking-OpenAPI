@@ -120,7 +120,7 @@ get:
       content:
         application/json:
           schema:
-            $ref: ../../components/schemas/vacancies/vacancies.yaml
+            $ref: ../../components/schemas/vacancies.yaml
     '403':
       $ref: ../../components/responses/403.yaml
 

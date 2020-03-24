@@ -19,13 +19,13 @@ security:
   - BearerAuth: []
 paths:
   /registration:
-    $ref: ./paths/registration/registration.yaml
+    $ref: ./paths/registration.yaml
   # /resumes/mine:
   #   $ref: ./paths/resumes/mine.yaml
   # /resumes/{resume_id}:
   #   $ref: ./paths/resumes/@{resume_id}.yaml
   # /vacancies:
-  #   $ref: ./paths/vacancies/vacancies.yaml
+  #   $ref: ./paths/vacancies.yaml
 components:
   securitySchemes:
     BearerAuth:

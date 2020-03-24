@@ -22,14 +22,10 @@ paths:
     $ref: ./paths/registration.yaml
   /auth:
     $ref: ./paths/auth.yaml
-  /new-object:
-    $ref: ./paths/object/new-object.yaml
-  # /resumes/mine:
-  #   $ref: ./paths/resumes/mine.yaml
-  # /resumes/{resume_id}:
-  #   $ref: ./paths/resumes/@{resume_id}.yaml
-  # /vacancies:
-  #   $ref: ./paths/vacancies.yaml
+  /add-object:
+    $ref: ./paths/object/add.yaml
+  /get-object:
+    $ref: ./paths/object/get.yaml
 components:
   securitySchemes:
     BearerAuth:

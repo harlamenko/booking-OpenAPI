@@ -1,0 +1,20 @@
+get:
+  tags:
+    - Управление объектом недвижимости
+  parameters:
+    - in: query
+      name: oid
+      description: Идентификатор объекта
+      schema:
+        type: integer
+      required: true
+  summary: Получение информации об объекте
+  responses:
+    '200':
+      description: Объект добавлен успешно
+      content:
+        application/json:
+          schema:
+            $ref: ../../components/requestBodies/object.yaml
+    '404':
+      $ref: ../../components/responses/404.yaml

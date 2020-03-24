@@ -28,6 +28,8 @@ paths:
     $ref: ./paths/object/get.yaml
   /update-object:
     $ref: ./paths/object/update.yaml
+  /delete-object:
+    $ref: ./paths/object/delete.yaml
 components:
   securitySchemes:
     BearerAuth:

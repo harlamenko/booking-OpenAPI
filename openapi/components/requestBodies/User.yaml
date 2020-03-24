@@ -1,0 +1,15 @@
+type: object
+properties:
+  username:
+    type: string
+    minLength: 1
+    maxLength: 64
+    description: Имя пользователя
+    example: vasya
+  password:
+    type: string
+    minLength: 1
+    maxLength: 64
+    format: password
+    description: Пароль
+    example: qwerty1234

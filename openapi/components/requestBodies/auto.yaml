@@ -1,0 +1,31 @@
+type: object
+properties:
+  name:
+    type: string
+    description: Марка
+    example: Tesla model S
+  type:
+    type: string
+    description: Тип такси
+    example: Стандартное такси
+  sits:
+    type: string
+    description: Кол-во мест
+    example: До 3
+  luggage:
+    type: string
+    description: Кол-во мест багажа
+    example: До 3
+  meeting:
+    type: boolean
+    description: Доступность встречи в зале прилета
+    example: true
+  service:
+    type: string
+    description: Служба такси
+    example: TK Milia
+  price: 
+    type: integer
+    description: Стоимость
+    example: 500
+  

@@ -1,0 +1,23 @@
+put:
+  tags:
+    - Управление такси
+  parameters:
+    - $ref: ../../components/parameters/aid.yaml
+  summary: Изменение информации об автомобиле
+  requestBody:
+    description: Измененная информация об автомобиле
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: ../../components/requestBodies/auto.yaml
+  responses:
+    '200':
+      description: Автомобиль успешно изменен
+      content:
+        application/json:
+          schema:
+            type: string
+            example: Ok
+    '400':
+      $ref: ../../components/responses/400.yaml

@@ -1,0 +1,6 @@
+in: query
+name: aid
+description: Идентификатор автомобиля
+schema:
+  type: integer
+required: true

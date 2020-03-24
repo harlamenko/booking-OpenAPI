@@ -30,6 +30,14 @@ paths:
     $ref: ./paths/object/update.yaml
   /delete-object:
     $ref: ./paths/object/delete.yaml
+  /add-taxi:
+    $ref: ./paths/taxi/add.yaml
+  /get-taxi:
+    $ref: ./paths/taxi/get.yaml
+  /update-taxi:
+    $ref: ./paths/taxi/update.yaml
+  /delete-taxi:
+    $ref: ./paths/taxi/delete.yaml
 components:
   securitySchemes:
     BearerAuth:

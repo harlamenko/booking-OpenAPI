@@ -2,12 +2,7 @@ get:
   tags:
     - Управление объектом недвижимости
   parameters:
-    - in: query
-      name: oid
-      description: Идентификатор объекта
-      schema:
-        type: integer
-      required: true
+    - $ref: ../../components/parameters/oid.yaml
   summary: Получение информации об объекте
   responses:
     '200':

@@ -1,0 +1,25 @@
+post:
+  tags:
+    - Управление такси
+  summary: Добавление нового автомобиля
+  requestBody:
+    description: Информация об автомобиле
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: ../../components/requestBodies/auto.yaml
+  responses:
+    '200':
+      description: Автомобиль добавлен успешно
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              id:
+                type: integer
+                description: Идентификатор автомобиля
+                example: 1234
+    '400':
+      $ref: ../../components/responses/400.yaml

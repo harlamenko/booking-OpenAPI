@@ -1,0 +1,23 @@
+put:
+  tags:
+    - Управление объектом недвижимости
+  parameters:
+    - $ref: ../../components/parameters/oid.yaml
+  summary: Изменение информации об объекте
+  requestBody:
+    description: Измененная информация об объекте
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: ../../components/requestBodies/object.yaml
+  responses:
+    '200':
+      description: Объект успешно изменен
+      content:
+        application/json:
+          schema:
+            type: string
+            example: Ok
+    '400':
+      $ref: ../../components/responses/400.yaml

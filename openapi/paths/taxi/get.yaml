@@ -1,0 +1,15 @@
+get:
+  tags:
+    - Управление такси
+  parameters:
+    - $ref: ../../components/parameters/aid.yaml
+  summary: Получение информации об автомобиле
+  responses:
+    '200':
+      description: Информации об автомобиле получена успешно
+      content:
+        application/json:
+          schema:
+            $ref: ../../components/requestBodies/auto.yaml
+    '404':
+      $ref: ../../components/responses/404.yaml

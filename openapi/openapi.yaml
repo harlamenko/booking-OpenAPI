@@ -22,12 +22,22 @@ paths:
     $ref: ./paths/registration.yaml
   /auth:
     $ref: ./paths/auth.yaml
-  # /resumes/mine:
-  #   $ref: ./paths/resumes/mine.yaml
-  # /resumes/{resume_id}:
-  #   $ref: ./paths/resumes/@{resume_id}.yaml
-  # /vacancies:
-  #   $ref: ./paths/vacancies.yaml
+  /add-object:
+    $ref: ./paths/object/add.yaml
+  /get-object:
+    $ref: ./paths/object/get.yaml
+  /update-object:
+    $ref: ./paths/object/update.yaml
+  /delete-object:
+    $ref: ./paths/object/delete.yaml
+  /add-taxi:
+    $ref: ./paths/taxi/add.yaml
+  /get-taxi:
+    $ref: ./paths/taxi/get.yaml
+  /update-taxi:
+    $ref: ./paths/taxi/update.yaml
+  /delete-taxi:
+    $ref: ./paths/taxi/delete.yaml
 components:
   securitySchemes:
     BearerAuth:

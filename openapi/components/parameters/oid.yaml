@@ -1,0 +1,6 @@
+in: query
+name: oid
+description: Идентификатор объекта
+schema:
+  type: integer
+required: true

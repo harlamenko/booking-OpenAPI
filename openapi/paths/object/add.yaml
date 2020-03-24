@@ -1,0 +1,25 @@
+post:
+  tags:
+    - Управление объектом недвижимости
+  summary: Добавление нового объекта недвижимости
+  requestBody:
+    description: Информация об объекте
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: ../../components/requestBodies/object.yaml
+  responses:
+    '200':
+      description: Объект добавлен успешно
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              id:
+                type: integer
+                description: Идентификатор объекта
+                example: 1234
+    '400':
+      $ref: ../../components/responses/400.yaml

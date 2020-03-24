@@ -1,0 +1,48 @@
+type: object
+properties:
+  phone_number:
+    type: string
+    description: Телефонный номер
+    format: phone
+    example: '+78888888888'
+  object_name:
+    type: string
+    description: Наименование объекта недвижимости
+    example: Odnushka
+  stars:
+    type: integer
+    description: Кол-во звезд
+    example: 0
+  host_name:
+    type: string
+    description: Имя владельца
+    example: Vasya
+  country:
+    type: string
+    description: Страна
+    example: Uganda
+  city:
+    type: string
+    description: Город
+    example: Bombo
+  street:
+    type: string
+    description: Улица
+    example: Lenina
+  house_number:
+    type: integer
+    description: Номер дома
+    example: 3
+  room:
+    type: string
+    description: Номер квартиры
+    nullable: true
+    example: null
+  guests_count:
+    type: integer
+    description: Кол-во мест
+    example: 2
+  price: 
+    type: integer
+    description: Цена в сутки
+    example: 200

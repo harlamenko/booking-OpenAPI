@@ -1,0 +1,15 @@
+get:
+  tags:
+    - Управление объектом недвижимости
+  parameters:
+    - $ref: ../../components/parameters/oid.yaml
+  summary: Получение информации об объекте
+  responses:
+    '200':
+      description: Информации об объекте получена успешно
+      content:
+        application/json:
+          schema:
+            $ref: ../../components/requestBodies/object.yaml
+    '404':
+      $ref: ../../components/responses/404.yaml
